@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ app_name }}</title><link rel="icon" href="/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="topbar"><div class="brand"><span class="brand-icon">✦</span><span>Receta<span class="accent">IA</span></span></div><span class="tagline">Cocina mejor con lo que ya tienes</span><button id="logout" class="ghost hidden">Cerrar sesión</button></header>
+<main class="container">
+  <section class="hero"><div><p class="eyebrow">TU COCINA, TU INVENTARIO, TU INSPIRACIÓN</p><h1>¿Qué cocinamos <em>hoy?</em></h1><p class="muted">Agrega lo que tienes en casa y deja que la inteligencia artificial te sorprenda.</p></div><div class="hero-art">🥑<span>🍅</span><b>🥕</b></div></section>
+  <section id="auth-panel" class="panel auth-panel"><div class="panel-heading"><div><p class="eyebrow">BIENVENIDO</p><h2>Entra a tu cocina</h2></div></div><div class="tabs"><button class="tab active" data-mode="login">Iniciar sesión</button><button class="tab" data-mode="register">Crear cuenta</button></div><form id="auth-form"><label id="name-wrap" class="hidden">Nombre completo<input id="full-name" autocomplete="name"></label><label>Correo electrónico<input id="email" type="email" required autocomplete="email"></label><label>Contraseña<input id="password" type="password" minlength="8" required autocomplete="current-password"></label><button class="primary full" type="submit" id="auth-submit">Entrar</button><p id="auth-message" class="message"></p></form></section>
+  <section id="app-panel" class="hidden">
+    <div class="dashboard-grid">
+      <section class="panel"><div class="panel-heading"><div><p class="eyebrow">PASO 1</p><h2>Mi inventario</h2><p class="muted small">Ingredientes disponibles en casa</p></div><span class="counter" id="ingredient-count">0</span></div>
+        <form id="ingredient-form" class="ingredient-form"><label>Ingrediente<input id="ingredient-name" placeholder="Ej. Tomate" required maxlength="120"></label><div class="inline-fields"><label>Cantidad<input id="ingredient-quantity" type="number" min="0.01" step="0.01" value="1" required></label><label>Unidad<input id="ingredient-unit" value="unidad" required></label></div><button class="primary full" type="submit">＋ Agregar ingrediente</button></form><ul id="ingredient-list" class="ingredient-list"></ul>
+      </section>
+      <section class="panel generate-panel"><p class="eyebrow">PASO 2</p><div class="chef-icon">👩‍🍳</div><h2>Tu próxima receta</h2><p class="muted">Usaremos tu inventario para crear una receta práctica, con cantidades, pasos y tiempo estimado.</p><button id="generate" class="primary full">✦ Generar receta con IA</button><p id="generate-message" class="message"></p><div class="hint">La receta se guardará automáticamente en tu historial.</div></section>
+    </div>
+    <section class="panel history-panel"><div class="panel-heading"><div><p class="eyebrow">TUS CREACIONES</p><h2>Historial de recetas</h2></div><button id="refresh" class="ghost">Actualizar</button></div><div id="recipe-list" class="recipe-grid"><p class="muted">Aún no tienes recetas guardadas.</p></div></section>
+  </section>
+</main><footer>Generador de Recetas con IA · Proyecto académico de Tecnologías Web</footer>
+<script src="/static/app.js"></script>
+</body></html>
