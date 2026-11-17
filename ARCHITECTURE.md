@@ -1,41 +1,40 @@
-﻿# Arquitectura del sistema
+# Arquitectura del sistema
 
-## 1. Descripción general
+## Visión general
 
-Generador de Recetas con IA es una aplicación web basada en FastAPI que permite administrar ingredientes y generar recetas mediante OpenRouter.
+La aplicación organiza la lógica en una API FastAPI, una capa de persistencia SQLAlchemy y un servicio de generación conectado a OpenRouter. La interfaz web se entrega mediante plantillas y archivos estáticos.
 
-## 2. Componentes principales
+## Componentes
 
-- **Frontend:** HTML, CSS y JavaScript.
-- **API REST:** FastAPI.
-- **Autenticación:** JWT y protección de contraseñas.
-- **Persistencia:** SQLAlchemy y PostgreSQL.
-- **Inteligencia artificial:** integración con OpenRouter.
-- **Contenedores:** Docker y Docker Compose.
+- **Interfaz:** HTML, CSS y JavaScript en `app/templates/` y `app/static/`.
+- **API:** routers FastAPI para autenticación, ingredientes y recetas.
+- **Validación:** esquemas Pydantic en `app/schemas/`.
+- **Persistencia:** modelos SQLAlchemy y PostgreSQL; SQLite se utiliza en las pruebas.
+- **Seguridad:** tokens JWT y hash de contraseñas con PBKDF2-HMAC-SHA256.
+- **Servicio IA:** `app/services/ai_service.py` construye la solicitud, invoca OpenRouter y valida el JSON recibido.
+- **Despliegue local:** Docker Compose coordina la API y PostgreSQL.
 
-## 3. Organización del código
+## Organización del código
 
-- `app/main.py`: punto de entrada de la aplicación.
-- `app/config.py`: configuración y variables de entorno.
-- `app/database.py`: conexión con la base de datos.
-- `app/models/`: modelos de datos.
-- `app/routers/`: endpoints de autenticación, ingredientes y recetas.
-- `app/schemas/`: esquemas de validación.
-- `app/services/`: lógica de seguridad e integración con IA.
-- `app/static/`: recursos estáticos.
-- `app/templates/`: interfaz web.
-- `tests/`: pruebas automatizadas.
+- `app/main.py`: crea la aplicación, registra routers y recursos web.
+- `app/config.py`: carga configuración desde variables de entorno y `.env`.
+- `app/database.py`: motor, sesiones y base declarativa.
+- `app/models/`: entidades persistentes.
+- `app/routers/`: endpoints HTTP.
+- `app/schemas/`: validación de entrada y salida.
+- `app/services/`: seguridad e integración con IA.
+- `tests/`: suite de pruebas automatizadas.
 
-## 4. Flujo de generación de recetas
+## Flujo de generación
 
-1. El usuario inicia sesión.
+1. El usuario se autentica y recibe un token JWT.
 2. Registra ingredientes en su inventario.
-3. Solicita generar una receta.
-4. La API consulta los ingredientes disponibles.
-5. El servicio de IA solicita una receta a OpenRouter.
-6. La respuesta se valida y se almacena.
-7. El usuario puede consultar el historial y calificar recetas.
+3. Solicita `POST /recipes/generate`.
+4. La API consulta únicamente los ingredientes asociados al usuario autenticado.
+5. El servicio construye un prompt y envía la petición a OpenRouter.
+6. La respuesta JSON se valida antes de persistir los datos.
+7. El usuario consulta el historial y puede calificar o eliminar sus recetas.
 
-## 5. Infraestructura
+## Configuración y secretos
 
-Docker Compose coordina la aplicación y PostgreSQL. Las variables sensibles se administran mediante `.env`, excluido del repositorio.
+Las credenciales se cargan desde variables de entorno. El archivo local `.env` no debe versionarse; `.env.example` sirve como plantilla sin secretos reales.
