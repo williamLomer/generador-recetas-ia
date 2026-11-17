@@ -1,25 +1,28 @@
-﻿# Guía de contribución
+# Guía de contribución
 
 ## Requisitos
-- Python 3.11 o superior.
-- Docker y Docker Compose.
-- Git.
 
-## Flujo de trabajo
+- Python 3.11 o superior.
+- Git.
+- Docker Engine y Docker Compose para probar el despliegue local.
+
+## Flujo recomendado
+
 1. Crear una rama para el cambio.
-2. Implementar una mejora concreta.
-3. Ejecutar las pruebas con `pytest -v`.
-4. Verificar que no se incluyan secretos ni archivos `.env`.
-5. Describir claramente los cambios realizados.
+2. Implementar una modificación pequeña y enfocada.
+3. Ejecutar `pytest -v`.
+4. Revisar `git diff` y comprobar que no se incluyan secretos ni archivos locales.
+5. Crear un commit con un mensaje descriptivo.
+6. Abrir un pull request explicando el cambio y las pruebas ejecutadas.
 
 ## Convención de commits
-- feat: nueva funcionalidad.
-- fix: corrección de errores.
-- docs: documentación.
-- test: pruebas automatizadas.
-- refactor: reorganización del código.
 
-## Validación
-Antes de publicar cambios, ejecutar:
+- `feat:` nueva funcionalidad.
+- `fix:` corrección.
+- `docs:` documentación.
+- `test:` pruebas.
+- `refactor:` reorganización sin cambio funcional.
 
-`docker compose exec app pytest -v`
+## Seguridad
+
+Nunca incluir `.env`, claves API, tokens JWT ni contraseñas reales en commits o pull requests.
