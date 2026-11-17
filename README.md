@@ -35,7 +35,7 @@ Edita `.env` y define `SECRET_KEY`, `OPENROUTER_API_KEY` y, si lo deseas, `OPENR
 ```powershell
 uvicorn app.main:app --reload
 ```
-Abre `http://127.0.0.1:8000` o la documentación `http://127.0.0.1:8000/docs`.
+Abre `http://127.0.0.1:8001` o la documentación `http://127.0.0.1:8001/docs`.
 
 ## Ejecución con Docker Compose
 Copia `.env.example` a `.env`, añade `POSTGRES_PASSWORD` y una clave `SECRET_KEY` aleatoria de al menos 32 caracteres. Configura `OPENROUTER_API_KEY`.
