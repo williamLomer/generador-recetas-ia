@@ -77,3 +77,23 @@ El despliegue requiere dominio, VPS y credenciales que pertenecen al estudiante.
 
 ## Seguridad y publicación
 No subir `.env`, claves API, contraseñas reales ni secretos al repositorio. `.env.example` contiene únicamente nombres y valores de ejemplo. Revocar y regenerar cualquier clave que haya sido compartida accidentalmente.
+
+
+## Endpoints principales
+
+| Método | Ruta | Descripción | Autenticación |
+|---|---|---|---|
+| GET | `/health` | Verificar estado de la API | No |
+| POST | `/auth/register` | Registrar usuario | No |
+| POST | `/auth/login` | Iniciar sesión | No |
+| GET | `/ingredients/` | Listar ingredientes | JWT |
+| POST | `/ingredients/` | Crear ingrediente | JWT |
+| GET | `/ingredients/{ingredient_id}` | Consultar ingrediente | JWT |
+| PUT | `/ingredients/{ingredient_id}` | Actualizar ingrediente | JWT |
+| DELETE | `/ingredients/{ingredient_id}` | Eliminar ingrediente | JWT |
+| POST | `/recipes/generate` | Generar receta con IA | JWT |
+| GET | `/recipes/` | Consultar historial | JWT |
+| POST | `/recipes/{recipe_id}/rating` | Calificar receta | JWT |
+| DELETE | `/recipes/{recipe_id}` | Eliminar receta | JWT |
+
+Para probar los endpoints, iniciar la aplicación y visitar `/docs`.
