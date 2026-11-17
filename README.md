@@ -47,10 +47,12 @@ docker compose logs -f app
 La API estará en el puerto 8000. Los datos de PostgreSQL se conservan en el volumen `postgres_data`.
 
 ## Pruebas
+## Pruebas
+
+Ejecutar las pruebas dentro del contenedor:
+
 ```bash
-pytest
-```
-La suite contiene pruebas de salud, seguridad de contraseñas, JWT, construcción del prompt, parseo de JSON, autenticación y operaciones del inventario. La generación real de OpenRouter requiere una clave y no se invoca en las pruebas unitarias.
+docker compose exec app pytest -v
 
 ## Variables de entorno
 | Variable | Descripción |
