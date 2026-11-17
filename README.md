@@ -134,3 +134,8 @@ El despliegue público aún requiere infraestructura externa y no se declara rea
 6. Verificar HTTPS, `/health`, `/docs` y los flujos principales.
 
 El VPS, dominio y sus credenciales deben ser proporcionados por el responsable del proyecto.
+
+
+## Despliegue de demostración en Render
+
+Se incluye `render.yaml` para crear un servicio Docker en Render. Para conservar datos sin depender del disco efímero del servicio, se utiliza PostgreSQL administrado en Neon. Consulta [DEPLOY_RENDER.md](DEPLOY_RENDER.md) para la configuración paso a paso y los límites del plan gratuito. Esta alternativa no sustituye un VPS propio si la evaluación lo exige expresamente.
